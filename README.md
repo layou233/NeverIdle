@@ -12,6 +12,10 @@ bash <(curl -s -L https://gist.githubusercontent.com/Ansen/e45320205faf5786d3282
 
 MJJ 们估计会喜欢这个。感谢脚本作者 @Ansen
 
+默认执行下面的命令，当然肯定没法覆盖所有的需求。  
+比如 AMD 没有 2G 内存，也没有浪费内存的要求。  
+所以依然建议各位自己安装，也是非常便捷迅速的。
+
 ## Usage
 
 从 Release 下载可执行文件。注意区分 amd64 和 arm64。
