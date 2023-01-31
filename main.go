@@ -1,12 +1,15 @@
 package main
 
 import (
+	"NeverIdle/libs"
 	"flag"
 	"fmt"
 	"math/rand"
 	"runtime"
 	"time"
 )
+
+const Version = "0.1"
 
 var (
 	FlagCPU     = flag.Duration("c", 0, "Interval for CPU waste")
@@ -27,7 +30,7 @@ func main() {
 		nothingEnabled = false
 		fmt.Println("====================")
 		fmt.Println("Starting memory wasting of", *FlagMemory, "GiB")
-		go WasteMemory(*FlagMemory)
+		go libs.WasteMemory(*FlagMemory)
 		runtime.Gosched()
 		fmt.Println("====================")
 	}
@@ -36,7 +39,7 @@ func main() {
 		nothingEnabled = false
 		fmt.Println("====================")
 		fmt.Println("Starting CPU wasting with interval", *FlagCPU)
-		go WasteCPU(*FlagCPU)
+		go libs.WasteCPU(*FlagCPU)
 		runtime.Gosched()
 		fmt.Println("====================")
 	}
@@ -45,7 +48,7 @@ func main() {
 		nothingEnabled = false
 		fmt.Println("====================")
 		fmt.Println("Starting network speed testing with interval", *FlagNetwork)
-		go WasteNetwork(*FlagNetwork)
+		go libs.WasteNetwork(*FlagNetwork)
 		runtime.Gosched()
 		fmt.Println("====================")
 	}
