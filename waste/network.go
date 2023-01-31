@@ -1,4 +1,4 @@
-package libs
+package waste
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 	"github.com/showwin/speedtest-go/speedtest"
 )
 
-func WasteNetwork(interval time.Duration) {
+func Network(interval time.Duration) {
 	for {
 		user, err := speedtest.FetchUserInfo()
 		if err != nil {

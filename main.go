@@ -1,12 +1,13 @@
 package main
 
 import (
-	"NeverIdle/libs"
 	"flag"
 	"fmt"
 	"math/rand"
 	"runtime"
 	"time"
+
+	"github.com/layou233/neveridle/waste"
 )
 
 const Version = "0.1"
@@ -30,7 +31,7 @@ func main() {
 		nothingEnabled = false
 		fmt.Println("====================")
 		fmt.Println("Starting memory wasting of", *FlagMemory, "GiB")
-		go libs.WasteMemory(*FlagMemory)
+		go waste.Memory(*FlagMemory)
 		runtime.Gosched()
 		fmt.Println("====================")
 	}
@@ -39,7 +40,7 @@ func main() {
 		nothingEnabled = false
 		fmt.Println("====================")
 		fmt.Println("Starting CPU wasting with interval", *FlagCPU)
-		go libs.WasteCPU(*FlagCPU)
+		go waste.CPU(*FlagCPU)
 		runtime.Gosched()
 		fmt.Println("====================")
 	}
@@ -48,7 +49,7 @@ func main() {
 		nothingEnabled = false
 		fmt.Println("====================")
 		fmt.Println("Starting network speed testing with interval", *FlagNetwork)
-		go libs.WasteNetwork(*FlagNetwork)
+		go waste.Network(*FlagNetwork)
 		runtime.Gosched()
 		fmt.Println("====================")
 	}

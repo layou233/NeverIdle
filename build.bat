@@ -1,25 +1,25 @@
 @echo off
 
-@REM linux arm
+@REM Linux arm64
 SET CGO_ENABLED=0
 SET GOOS=linux
 SET GOARCH=arm64
-go build -o neverIdle.linux-arm64 main.go
+go build -trimpath -ldflags="-s -w -buildid=" -o NeverIdle-linux-arm64 main.go
 
-@REM linux amd64
+@REM Linux amd64
 SET CGO_ENABLED=0
 SET GOOS=linux
 SET GOARCH=amd64
-go build -o neverIdle.linux-amd64 main.go
+go build -trimpath -ldflags="-s -w -buildid=" -o NeverIdle-linux-amd64 main.go
 
-@REM Win
+@REM Windows amd64
 SET CGO_ENABLED=0
 SET GOOS=windows
 SET GOARCH=amd64
-go build -o neverIdle.exe main.go
+go build -trimpath -ldflags="-s -w -buildid=" -o NeverIdle-windows-amd64.exe main.go
 
-@REM @REM MAC
+@REM @REM macOS amd64
 @REM SET CGO_ENABLED=0
 @REM SET GOOS=darwin
 @REM SET GOARCH=amd64
-@REM go build -o neverIdle.mac main.go
+@REM go build -trimpath -ldflags="-s -w -buildid=" -o NeverIdle-darwin-amd64 main.go

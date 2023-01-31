@@ -1,4 +1,4 @@
-package libs
+package waste
 
 import "math/rand"
 
@@ -14,7 +14,7 @@ type GiBObject struct {
 	B [GiB]byte
 }
 
-func WasteMemory(gib int) {
+func Memory(gib int) {
 	Buffers = make([]*GiBObject, 0, gib)
 	for gib > 0 {
 		o := new(GiBObject)

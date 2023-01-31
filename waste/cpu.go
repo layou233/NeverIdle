@@ -1,4 +1,4 @@
-package libs
+package waste
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"golang.org/x/crypto/chacha20"
 )
 
-func WasteCPU(interval time.Duration) {
+func CPU(interval time.Duration) {
 	var buffer []byte
 	if len(Buffers) > 0 {
 		buffer = Buffers[0].B[:4*MiB]
@@ -24,7 +24,7 @@ func WasteCPU(interval time.Duration) {
 	}
 
 	for {
-		for i := 0; i < 4; i++ {
+		for i := 0; i < 8; i++ {
 			go func() {
 				for i := 0; i < 64; i++ {
 					cipher.XORKeyStream(buffer, buffer)
