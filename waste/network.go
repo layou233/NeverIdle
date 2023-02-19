@@ -23,11 +23,12 @@ func Network(interval time.Duration) {
 			time.Sleep(time.Minute)
 			continue
 		}
-		targets, err := serverList.FindServer([]int{})
-		if err != nil {
-			fmt.Println("[NETWORK] Error when finding target:", err)
-			time.Sleep(time.Minute)
-			continue
+
+		var targets = speedtest.Servers{}
+		for _, server := range serverList {
+			if server.Latency > 0 {
+				targets = append(targets, server)
+			}
 		}
 
 		// pick random
