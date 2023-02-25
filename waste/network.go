@@ -51,6 +51,7 @@ func Network(interval time.Duration) {
 
 		fmt.Println("[NETWORK] SpeedTest Ping:", s.Latency, ",", s.DLSpeed, ",", "Upload:", s.ULSpeed, "via", s.String())
 
+		speedtest.GlobalDataManager.Reset()
 		runtime.GC()
 		time.Sleep(interval)
 	}
