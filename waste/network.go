@@ -24,11 +24,16 @@ func Network(interval time.Duration) {
 			continue
 		}
 
-		var targets = speedtest.Servers{}
+		targets := make(speedtest.Servers, 0, len(serverList))
 		for _, server := range serverList {
 			if server.Latency > 0 {
 				targets = append(targets, server)
 			}
+		}
+		if len(targets) == 0 {
+			fmt.Println("[NETWORK] No available server to test. Retry in 5 seconds...")
+			time.Sleep(5 * time.Second)
+			continue
 		}
 
 		// pick random
@@ -49,7 +54,7 @@ func Network(interval time.Duration) {
 			s.ULSpeed = -1
 		}
 
-		fmt.Println("[NETWORK] SpeedTest Ping:", s.Latency, ",", s.DLSpeed, ",", "Upload:", s.ULSpeed, "via", s.String())
+		fmt.Println("[NETWORK] SpeedTest Ping:", s.Latency, ", Download:", s.DLSpeed, ", Upload:", s.ULSpeed, "via", s.String())
 
 		speedtest.GlobalDataManager.Reset()
 		runtime.GC()

@@ -10,7 +10,7 @@ import (
 	"github.com/layou233/neveridle/waste"
 )
 
-const Version = "0.1"
+const Version = "0.2.1"
 
 var (
 	FlagCPU     = flag.Duration("c", 0, "Interval for CPU waste")
