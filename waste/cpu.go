@@ -33,6 +33,13 @@ func CPU(interval time.Duration) {
 		}
 
 		fmt.Println("[CPU] Successfully wasted on", time.Now())
+
+		// try to construct a new cipher
+		newCipher, err := chacha20.NewUnauthenticatedCipher(buffer[:32], buffer[:24])
+		if err == nil {
+			cipher = newCipher
+		}
+
 		time.Sleep(interval)
 	}
 }
