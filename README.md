@@ -40,3 +40,20 @@ MJJ 们估计会喜欢这个。感谢脚本作者 @Ansen
 格式同 CPU。会定期执行一次 Ookla Speed Test（还会输出结果哦！）
 
 *启动该程序后即立刻执行一次你配置的所有功能，可以观察效果。*
+
+## Docker
+
+```shell
+docker run ghcr.io/m3chd09/neveridle /app/NeverIdle -c 2h -m 2 -n 4h
+```
+
+docker-compose.yml
+
+```yaml
+version: '3.9'
+services:
+  app:
+    image: ghcr.io/m3chd09/neveridle
+    command: /app/NeverIdle -c 2h -m 2 -n 4h
+    restart: always
+```
