@@ -10,12 +10,13 @@ import (
 	"github.com/layou233/neveridle/waste"
 )
 
-const Version = "0.2.1"
+const Version = "0.2.2"
 
 var (
-	FlagCPU     = flag.Duration("c", 0, "Interval for CPU waste")
-	FlagMemory  = flag.Int("m", 0, "GiB of memory waste")
-	FlagNetwork = flag.Duration("n", 0, "Interval for network speed test")
+	FlagCPU                    = flag.Duration("c", 0, "Interval for CPU waste")
+	FlagMemory                 = flag.Int("m", 0, "GiB of memory waste")
+	FlagNetwork                = flag.Duration("n", 0, "Interval for network speed test")
+	FlagNetworkConnectionCount = flag.Int("t", 10, "Set concurrent connections for network speed test")
 )
 
 func main() {
@@ -49,7 +50,7 @@ func main() {
 		nothingEnabled = false
 		fmt.Println("====================")
 		fmt.Println("Starting network speed testing with interval", *FlagNetwork)
-		go waste.Network(*FlagNetwork)
+		go waste.Network(*FlagNetwork, *FlagNetworkConnectionCount)
 		runtime.Gosched()
 		fmt.Println("====================")
 	}
