@@ -59,4 +59,6 @@ services:
     image: ghcr.io/m3chd09/neveridle
     command: /app/NeverIdle -c 2h -m 2 -n 4h
     restart: always
+    volumes:
+      - /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro
 ```
