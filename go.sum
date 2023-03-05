@@ -1,5 +1,5 @@
-github.com/showwin/speedtest-go v1.4.1 h1:A+3gmwKIQz9RVlXSilLNadcH6j4wUXF0giIqQeANOdg=
-github.com/showwin/speedtest-go v1.4.1/go.mod h1:Y7c+pxzaNAlo4mYP+x83pnYY8IM3bkHGDhTdrgUnkNE=
+github.com/showwin/speedtest-go v1.5.2 h1:drXsmaGC36VXi6biSZ+vyo/tYCkaoTU2mAF2b6wQmlk=
+github.com/showwin/speedtest-go v1.5.2/go.mod h1:Y7c+pxzaNAlo4mYP+x83pnYY8IM3bkHGDhTdrgUnkNE=
 golang.org/x/crypto v0.6.0 h1:qfktjS5LUO+fFKeJXZ+ikTRijMmljikvG68fpMMruSc=
 golang.org/x/crypto v0.6.0/go.mod h1:OFC/31mSvZgRz0V1QTNCzfAI1aIRzbiufJtkMIlEp58=
 golang.org/x/sys v0.5.0 h1:MUK/U/4lj1t1oPg0HfuXDN/Z1wv31ZJ/YcPiGccS4DU=

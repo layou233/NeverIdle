@@ -1,6 +1,7 @@
 package waste
 
 import (
+	"context"
 	"fmt"
 	"math/rand"
 	"runtime"
@@ -9,52 +10,55 @@ import (
 	"github.com/showwin/speedtest-go/speedtest"
 )
 
-func Network(interval time.Duration) {
+func Network(interval time.Duration, connectionCount int) {
+	cache := false
+	speedtest.GlobalDataManager.SetNThread(connectionCount)
+	var targets speedtest.Servers
 	for {
-		user, err := speedtest.FetchUserInfo()
-		if err != nil {
-			fmt.Println("[NETWORK] Error when fetching user info:", err)
-			time.Sleep(time.Minute)
-			continue
-		}
-		serverList, err := speedtest.FetchServers(user)
-		if err != nil {
-			fmt.Println("[NETWORK] Error when fetching servers:", err)
-			time.Sleep(time.Minute)
-			continue
-		}
+		if !cache {
+			user, err := speedtest.FetchUserInfo()
+			if err != nil {
+				fmt.Println("[NETWORK] Error when fetching user info:", err)
+				time.Sleep(time.Minute)
+				continue
+			}
+			serverList, err := speedtest.FetchServers(user)
+			if err != nil {
+				fmt.Println("[NETWORK] Error when fetching servers:", err)
+				time.Sleep(time.Minute)
+				continue
+			}
 
-		targets := make(speedtest.Servers, 0, len(serverList))
-		for _, server := range serverList {
-			if server.Latency > 0 {
-				targets = append(targets, server)
+			targets = *serverList.Available()
+			if len(targets) == 0 {
+				fmt.Println("[NETWORK] No available server to test. Retry in 5 seconds...")
+				time.Sleep(5 * time.Second)
+				continue
+			}
+			if float64(len(targets))/float64(len(serverList)) > 0.5 {
+				cache = true
 			}
 		}
-		if len(targets) == 0 {
-			fmt.Println("[NETWORK] No available server to test. Retry in 5 seconds...")
-			time.Sleep(5 * time.Second)
-			continue
-		}
 
-		// pick random
+		// pick random as main server
 		s := targets[rand.Int31n(int32(len(targets)))]
 
-		err = s.PingTest()
+		err := s.PingTest()
 		if err != nil {
 			s.Latency = -1
 		}
 
-		err = s.DownloadTest(false)
+		err = s.MultiDownloadTestContext(context.Background(), targets)
 		if err != nil {
 			s.DLSpeed = -1
 		}
 
-		err = s.UploadTest(false)
+		err = s.MultiUploadTestContext(context.Background(), targets)
 		if err != nil {
 			s.ULSpeed = -1
 		}
 
-		fmt.Println("[NETWORK] SpeedTest Ping:", s.Latency, ", Download:", s.DLSpeed, ", Upload:", s.ULSpeed, "via", s.String())
+		fmt.Println("[NETWORK] SpeedTest Ping:", s.Latency, ", Download:", s.DLSpeed, ", Upload:", s.ULSpeed, "mainServer", s.String())
 
 		speedtest.GlobalDataManager.Reset()
 		runtime.GC()
