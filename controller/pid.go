@@ -13,7 +13,7 @@ type Device interface {
 	Measure() float64
 }
 
-func PIDRun(
+func RunPID(
 	device Device,
 	referenceSignal float64,
 	rateImpact float64,

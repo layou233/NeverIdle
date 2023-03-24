@@ -16,7 +16,7 @@ var c *pid.Controller
 func CPUPercent(referencePercent float64) {
 	maxStep := 100000.0
 	rateImpact := maxStep / 1000
-	c = controller.PIDRun(initMachine(maxStep), referencePercent, rateImpact, false)
+	c = controller.RunPID(initMachine(maxStep), referencePercent, rateImpact, false)
 }
 
 type machine struct {
