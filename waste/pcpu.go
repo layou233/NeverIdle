@@ -1,21 +1,25 @@
 package waste
 
 import (
+	"crypto/rand"
+	"github.com/layou233/neveridle/controller"
 	"github.com/shirou/gopsutil/v3/cpu"
 	"go.einride.tech/pid"
+	"golang.org/x/crypto/chacha20"
 	"log"
 	"runtime"
 	"time"
 )
 
+var c *pid.Controller
+
 func CPUPercent(referencePercent float64) {
-	size := 100000.0
-	controller = RunPID(InitMachine(size), referencePercent, size/1000, false)
+	maxStep := 100000.0
+	rateImpact := maxStep / 1000
+	c = controller.PIDRun(initMachine(maxStep), referencePercent, rateImpact, false)
 }
 
-var controller *pid.Controller
-
-type Machine struct {
+type machine struct {
 	runtimePeriod   time.Duration // ms
 	maxControlValue float64
 	busyTime        int64
@@ -24,8 +28,8 @@ type Machine struct {
 	revolution float64
 }
 
-func InitMachine(max float64) *Machine {
-	e := &Machine{runtimePeriod: time.Second, maxControlValue: max}
+func initMachine(maxStep float64) *machine {
+	e := &machine{runtimePeriod: time.Second, maxControlValue: maxStep}
 	e.busyTime = 0
 	e.idleTime = time.Duration(e.maxControlValue)
 	for i := 0; i < runtime.NumCPU(); i++ {
@@ -34,16 +38,29 @@ func InitMachine(max float64) *Machine {
 	return e
 }
 
-func (m *Machine) Run() {
+func (m *machine) Run() {
+	var buffer []byte
+	if len(Buffers) > 0 {
+		buffer = Buffers[0].B[:4*MiB]
+	} else {
+		buffer = make([]byte, 4*MiB)
+	}
+	_, _ = rand.Read(buffer)
+	cipher, _ := chacha20.NewUnauthenticatedCipher(buffer[:32], buffer[:24])
 	for {
 		startTime := time.Now().UnixNano()
 		for time.Now().UnixNano()-startTime < m.busyTime {
+			cipher.XORKeyStream(buffer, buffer)
+			newCipher, err := chacha20.NewUnauthenticatedCipher(buffer[:32], buffer[:24])
+			if err == nil {
+				cipher = newCipher
+			}
 		}
 		time.Sleep(m.idleTime)
 	}
 }
 
-func (m *Machine) Measure() float64 {
+func (m *machine) Measure() float64 {
 	percent, err := cpu.Percent(time.Second, false)
 	if err != nil {
 		log.Fatalln(err.Error())
@@ -52,12 +69,12 @@ func (m *Machine) Measure() float64 {
 	return percent[0]
 }
 
-func (m *Machine) Control(value float64) {
+func (m *machine) Control(value float64) {
 	// value range [0, maxControlValue] (unit: Nanosecond)
 	m.revolution += value
 	if m.revolution < 0 {
 		m.revolution = 0
-		controller.Reset()
+		c.Reset()
 	} else if m.revolution > m.maxControlValue {
 		m.revolution = m.maxControlValue
 	}

@@ -1,4 +1,4 @@
-package waste
+package controller
 
 import (
 	"fmt"
@@ -8,13 +8,13 @@ import (
 
 const samplingInterval = time.Second
 
-type PIDDevice interface {
+type Device interface {
 	Control(value float64)
 	Measure() float64
 }
 
-func RunPID(
-	device PIDDevice,
+func PIDRun(
+	device Device,
 	referenceSignal float64,
 	rateImpact float64,
 	debug bool,
@@ -40,7 +40,7 @@ func RunPID(
 				SamplingInterval: samplingInterval,
 			})
 			if debug {
-				fmt.Printf("actualSignal: %.2f, controlSignal: %.2f\n", actualSignal, controller.State.ControlSignal)
+				fmt.Printf("actualSignal: %.2f, controlSignal: %.2f\n", actualSignal, c.State.ControlSignal)
 			}
 			device.Control(c.State.ControlSignal)
 		}
