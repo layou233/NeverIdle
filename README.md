@@ -45,4 +45,9 @@ MJJ 们估计会喜欢这个。感谢脚本作者 @Ansen
 -t 指设置网络定期浪费的并发连接数。  
 默认为10个，值越大消耗的资源越多，一般情况不需要更改。
 
+-p 指设置该进程优先级，后跟随一个优先级数值。不指定则默认使用本平台的最低优先级。  
+对于 UNIX-like 系统（如 Linux、FreeBSD 和 macOS），数值取值范围为 [-20,19] ，数字越大优先级越低。  
+对于 Windows ，参见 [官方文档](https://learn.microsoft.com/zh-cn/windows/win32/api/processthreadsapi/nf-processthreadsapi-setpriorityclass)。  
+建议不进行指定，默认即为最低优先级，为其它所有进程让路。
+
 *启动该程序后即立刻执行一次你配置的所有功能，可以观察效果。*
