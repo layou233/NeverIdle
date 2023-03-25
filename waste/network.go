@@ -16,13 +16,13 @@ func Network(interval time.Duration, connectionCount int) {
 	var targets speedtest.Servers
 	for {
 		if !cache {
-			user, err := speedtest.FetchUserInfo()
+			_, err := speedtest.FetchUserInfo()
 			if err != nil {
 				fmt.Println("[NETWORK] Error when fetching user info:", err)
 				time.Sleep(time.Minute)
 				continue
 			}
-			serverList, err := speedtest.FetchServers(user)
+			serverList, err := speedtest.FetchServers()
 			if err != nil {
 				fmt.Println("[NETWORK] Error when fetching servers:", err)
 				time.Sleep(time.Minute)
@@ -43,7 +43,7 @@ func Network(interval time.Duration, connectionCount int) {
 		// pick random as main server
 		s := targets[rand.Int31n(int32(len(targets)))]
 
-		err := s.PingTest()
+		err := s.PingTest(nil)
 		if err != nil {
 			s.Latency = -1
 		}
