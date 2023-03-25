@@ -1,14 +1,16 @@
 package waste
 
 import (
-	"crypto/rand"
+	"log"
+	"math/rand"
+	"runtime"
+	"time"
+
 	"github.com/layou233/neveridle/controller"
+
 	"github.com/shirou/gopsutil/v3/cpu"
 	"go.einride.tech/pid"
 	"golang.org/x/crypto/chacha20"
-	"log"
-	"runtime"
-	"time"
 )
 
 var c *pid.Controller
@@ -16,7 +18,7 @@ var c *pid.Controller
 func CPUPercent(referencePercent float64) {
 	maxStep := 100000.0
 	rateImpact := maxStep / 1000
-	c = controller.RunPID(initMachine(maxStep), referencePercent, rateImpact, false)
+	c = controller.RunPID(newMachine(maxStep), referencePercent, rateImpact, false)
 }
 
 type machine struct {
@@ -28,7 +30,7 @@ type machine struct {
 	revolution float64
 }
 
-func initMachine(maxStep float64) *machine {
+func newMachine(maxStep float64) *machine {
 	e := &machine{runtimePeriod: time.Second, maxControlValue: maxStep}
 	e.busyTime = 0
 	e.idleTime = time.Duration(e.maxControlValue)
@@ -63,7 +65,7 @@ func (m *machine) Run() {
 func (m *machine) Measure() float64 {
 	percent, err := cpu.Percent(time.Second, false)
 	if err != nil {
-		log.Fatalln(err.Error())
+		log.Fatalln(err)
 		return -1
 	}
 	return percent[0]

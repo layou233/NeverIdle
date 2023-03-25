@@ -2,8 +2,9 @@ package controller
 
 import (
 	"fmt"
-	"go.einride.tech/pid"
 	"time"
+
+	"go.einride.tech/pid"
 )
 
 const samplingInterval = time.Second
