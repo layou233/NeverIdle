@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/layou233/neveridle/controller"
 	"math/rand"
 	"runtime"
 	"time"
@@ -18,6 +19,7 @@ var (
 	FlagMemory                 = flag.Int("m", 0, "GiB of memory waste")
 	FlagNetwork                = flag.Duration("n", 0, "Interval for network speed test")
 	FlagNetworkConnectionCount = flag.Int("t", 10, "Set concurrent connections for network speed test")
+	FlagPriority               = flag.Int("p", 666, "Set process priority value")
 )
 
 func main() {
@@ -28,6 +30,16 @@ func main() {
 
 	flag.Parse()
 	nothingEnabled := true
+
+	if *FlagPriority == 666 {
+		fmt.Println("[PRIORITY] Use the worst priority by default.")
+		controller.SetWorstPriority()
+	} else {
+		err := controller.SetPriority(*FlagPriority)
+		if err != nil {
+			fmt.Println("[PRIORITY] Error when set priority:", err)
+		}
+	}
 
 	if *FlagMemory != 0 {
 		nothingEnabled = false
