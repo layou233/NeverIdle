@@ -51,3 +51,21 @@ MJJ 们估计会喜欢这个。感谢脚本作者 @Ansen
 建议不进行指定，默认即为最低优先级，为其它所有进程让路。
 
 *启动该程序后即立刻执行一次你配置的所有功能，可以观察效果。*
+
+## docker 部署
+1. 下载 `Dockerfile`
+```shell
+wget https://raw.githubusercontent.com/layou233/NeverIdle/master/Dockerfile
+```
+2. 构建镜像
+```shell
+# arm机器
+docker build -t nevreidle:latest .
+# amd机器指定 ARCH=amd64
+docker build --build-arg ARCH=amd64 -t nevreidle:latest .
+```
+3. 运行
+```bash
+# 命令参数同上
+docker run -d --name nevreidle nevreidle:latest  -c 1h -m 2 -n 4h 
+```
