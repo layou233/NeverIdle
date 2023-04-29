@@ -3,11 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/layou233/neveridle/controller"
 	"math/rand"
 	"runtime"
 	"time"
 
+	"github.com/layou233/neveridle/controller"
 	"github.com/layou233/neveridle/waste"
 )
 
