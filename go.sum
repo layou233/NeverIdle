@@ -29,6 +29,8 @@ github.com/shoenig/go-m1cpu v0.1.5/go.mod h1:Wwvst4LR89UxjeFtLRMrpgRiyY4xPsejnVZ
 github.com/shoenig/test v0.6.3/go.mod h1:byHiCGXqrVaflBLAMq/srcZIHynQPQgeyvkvXnjqq0k=
 github.com/showwin/speedtest-go v1.6.0 h1:WEL7957o8Y/wrUsZdcVNcCCH0nKdBHeYoR3lmU8XOtc=
 github.com/showwin/speedtest-go v1.6.0/go.mod h1:XuGWHfAyS57C+8bKUxrDM696ffrQtgi01r7l8wipw9I=
+github.com/showwin/speedtest-go v1.6.1 h1:epogVvo2eX3eYqv0A0htgGF0lwuufD09ZTIwSEDS4rU=
+github.com/showwin/speedtest-go v1.6.1/go.mod h1:XuGWHfAyS57C+8bKUxrDM696ffrQtgi01r7l8wipw9I=
 github.com/spf13/pflag v1.0.3/go.mod h1:DYY7MBk1bdzusC3SYhjObp+wFpr4gzcvqqNjLnInEg4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/objx v0.4.0/go.mod h1:YvHI0jy2hoMjB+UWwv71VJQ9isScKT/TqJzVSSt89Yw=
