@@ -7,7 +7,7 @@ require (
 	github.com/showwin/speedtest-go v1.6.3
 	go.einride.tech/pid v0.1.1
 	golang.org/x/crypto v0.9.0
-	golang.org/x/sys v0.8.0
+	golang.org/x/sys v0.9.0
 )
 
 require (
