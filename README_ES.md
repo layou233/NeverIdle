@@ -4,6 +4,8 @@
 
 *Te quiero, pero ¿podrías no detener mi máquina?*
 
+**Este archivo Readme podría no estar actualizado, considere revisar el Readme en [**ingles**](README_en.md)**
+
 ---
 
 **A los usuarios no chinos:**
