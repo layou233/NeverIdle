@@ -10,7 +10,6 @@
 
 ¡Gracias por interesarte en este programa! :-P  
 Inicialmente, inventé esto para compartirlo con mis amigos chinos, pero no esperaba que se volviera popular en todo el mundo.  
-¡También, lamento la tardanza en proporcionar el README oficial en inglés! Ahora, simplemente disfrútalo. :-D
 
 Si necesitas ayuda, primero busca en Google y luego consulta los problemas reportados (issues).
 Hablo chino e inglés. Para otros idiomas, por favor, traduce antes de hacer preguntas. :)
