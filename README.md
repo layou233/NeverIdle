@@ -1,6 +1,6 @@
 # NeverIdle
 
-[**English**](README_en.md) | **简体中文**
+[**Español**](README_ES.md) | [**English**](README_en.md) | **简体中文**
 
 *我喜欢你，但别删我机，好么？*
 
