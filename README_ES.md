@@ -1,6 +1,6 @@
 # NeverIdle
 
-**Español** | [**English**](README.md) | [**简体中文**](README_CN.md)
+**Español** | [**English**](README_en.md) | [**简体中文**](README.md)
 
 *Te quiero, pero ¿podrías no detener mi máquina?*
 
