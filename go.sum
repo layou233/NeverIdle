@@ -48,6 +48,8 @@ github.com/showwin/speedtest-go v1.6.3 h1:vjF8THKUqvTGbDCw4iiJOMPFd+rs9f+R4olrT2
 github.com/showwin/speedtest-go v1.6.3/go.mod h1:uLgdWCNarXxlYsL2E5TOZpCIwpgSWnEANZp7gfHXHu0=
 github.com/showwin/speedtest-go v1.6.5 h1:dgY+5gy5JePr04syV6KrD5svwUk98+NTHgUxs74kIfE=
 github.com/showwin/speedtest-go v1.6.5/go.mod h1:uLgdWCNarXxlYsL2E5TOZpCIwpgSWnEANZp7gfHXHu0=
+github.com/showwin/speedtest-go v1.6.6 h1:WPq8vhD1aHzt23hJA+wHe3MLOXsVrMMOjU2UO98pOSc=
+github.com/showwin/speedtest-go v1.6.6/go.mod h1:uLgdWCNarXxlYsL2E5TOZpCIwpgSWnEANZp7gfHXHu0=
 github.com/spf13/pflag v1.0.3/go.mod h1:DYY7MBk1bdzusC3SYhjObp+wFpr4gzcvqqNjLnInEg4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/objx v0.4.0/go.mod h1:YvHI0jy2hoMjB+UWwv71VJQ9isScKT/TqJzVSSt89Yw=
