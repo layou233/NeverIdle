@@ -3,7 +3,7 @@ module github.com/layou233/neveridle
 go 1.19
 
 require (
-	github.com/shirou/gopsutil/v3 v3.24.1
+	github.com/shirou/gopsutil/v3 v3.24.2
 	github.com/showwin/speedtest-go v1.6.10
 	go.einride.tech/pid v0.1.1
 	golang.org/x/crypto v0.20.0
@@ -17,5 +17,5 @@ require (
 	github.com/shoenig/go-m1cpu v0.1.6 // indirect
 	github.com/tklauser/go-sysconf v0.3.12 // indirect
 	github.com/tklauser/numcpus v0.6.1 // indirect
-	github.com/yusufpapurcu/wmi v1.2.3 // indirect
+	github.com/yusufpapurcu/wmi v1.2.4 // indirect
 )
