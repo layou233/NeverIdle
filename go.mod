@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/shirou/gopsutil/v3 v3.24.3
-	github.com/showwin/speedtest-go v1.6.10
+	github.com/showwin/speedtest-go v1.6.11
 	go.einride.tech/pid v0.1.2
 	golang.org/x/crypto v0.22.0
 	golang.org/x/sys v0.19.0
