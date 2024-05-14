@@ -53,3 +53,22 @@ MJJ 们估计会喜欢这个。感谢脚本作者 @Ansen
 建议不进行指定，默认即为最低优先级，为其它所有进程让路。
 
 *启动该程序后即立刻执行一次你配置的所有功能，可以观察效果。*
+
+## Docker
+
+```shell
+docker run ghcr.io/m3chd09/neveridle /app/NeverIdle -c 2h -m 2 -n 4h
+```
+
+docker-compose.yml
+
+```yaml
+version: '3.9'
+services:
+  app:
+    image: ghcr.io/m3chd09/neveridle
+    command: /app/NeverIdle -c 2h -m 2 -n 4h
+    restart: always
+    volumes:
+      - /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro
+```
