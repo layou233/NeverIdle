@@ -6,7 +6,7 @@ require (
 	github.com/shirou/gopsutil/v3 v3.24.5
 	github.com/shirou/gopsutil/v4 v4.24.6
 	github.com/showwin/speedtest-go v1.7.5
-	go.einride.tech/pid v0.1.2
+	go.einride.tech/pid v0.1.3
 	golang.org/x/crypto v0.28.0
 	golang.org/x/sys v0.26.0
 )
