@@ -62,12 +62,12 @@ wget https://raw.githubusercontent.com/layou233/NeverIdle/master/Dockerfile
 2. 构建镜像
 ```shell
 # arm机器
-docker build -t nevreidle:latest .
+docker build -t neveridle:latest .
 # amd机器指定 ARCH=amd64
-docker build --build-arg ARCH=amd64 -t nevreidle:latest .
+docker build --build-arg ARCH=amd64 -t neveridle:latest .
 ```
 3. 运行
 ```bash
 # 命令参数同上
-docker run -d --name nevreidle nevreidle:latest  -c 1h -m 2 -n 4h 
+docker run -d --name neveridle neveridle:latest -c 1h -m 2 -n 4h
 ```
