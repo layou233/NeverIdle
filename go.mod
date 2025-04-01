@@ -6,7 +6,7 @@ toolchain go1.24.1
 
 require (
 	github.com/shirou/gopsutil/v3 v3.24.5
-	github.com/shirou/gopsutil/v4 v4.25.2
+	github.com/shirou/gopsutil/v4 v4.25.3
 	github.com/showwin/speedtest-go v1.7.9
 	go.einride.tech/pid v0.1.3
 	golang.org/x/crypto v0.36.0
