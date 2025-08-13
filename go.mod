@@ -9,8 +9,8 @@ require (
 	github.com/shirou/gopsutil/v4 v4.25.7
 	github.com/showwin/speedtest-go v1.7.9
 	go.einride.tech/pid v0.1.3
-	golang.org/x/crypto v0.39.0
-	golang.org/x/sys v0.34.0
+	golang.org/x/crypto v0.41.0
+	golang.org/x/sys v0.35.0
 )
 
 require (
