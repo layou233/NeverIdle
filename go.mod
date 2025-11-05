@@ -2,7 +2,7 @@ module github.com/layou233/neveridle
 
 go 1.24.0
 
-toolchain go1.25.1
+toolchain go1.25.4
 
 require (
 	github.com/shirou/gopsutil/v3 v3.24.5
