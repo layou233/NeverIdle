@@ -1,4 +1,4 @@
-FROM alpine:latest as builder
+FROM alpine:latest AS builder
 
 ARG ARCH=arm64
 
