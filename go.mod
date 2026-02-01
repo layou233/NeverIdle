@@ -6,11 +6,11 @@ toolchain go1.25.5
 
 require (
 	github.com/shirou/gopsutil/v3 v3.24.5
-	github.com/shirou/gopsutil/v4 v4.25.11
+	github.com/shirou/gopsutil/v4 v4.26.1
 	github.com/showwin/speedtest-go v1.7.9
 	go.einride.tech/pid v0.2.0
 	golang.org/x/crypto v0.46.0
-	golang.org/x/sys v0.39.0
+	golang.org/x/sys v0.40.0
 )
 
 require (
