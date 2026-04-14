@@ -43,11 +43,20 @@ Si el desperdicio máximo del 20% de la CPU es `-cp 0.2`. El rango de valores de
 -m activa el desperdicio de memoria, seguido de un número en GiB.
 Después de iniciarse, se ocupará la cantidad de memoria especificada y no se liberará hasta que el proceso sea detenido.
 
+-mp activa el desperdicio dinámico de memoria basado en un porcentaje.
+Por ejemplo, `-mp 0.2` ajustará automáticamente el uso de memoria para mantener el 20% y evitará un OOM del sistema. No lo use junto con `-m`.
+
 -n activa el desperdicio periódico de la red (ancho de banda), seguido del intervalo entre los desperdicios.
 El formato del argumento es igual al de `-c`. ¡Se realizará una prueba de velocidad de Ookla periódicamente (y los resultados serán mostrados)!
 
 -t especifica el número de conexiones simultáneas para el desperdicio periódico de la red.
 El valor predeterminado es 10. Cuanto mayor sea el valor, más recursos se consumirán. En la mayoría de las situaciones, no es necesario cambiarlo.
+
+-night-start y -night-end especifican el período nocturno (0-23 horas) para el desperdicio de red.
+Por ejemplo, `-night-start 22 -night-end 6` significa que la prueba solo se permite entre las 22:00 y las 06:00 del día siguiente.
+
+-idle establece el umbral de conexiones inactivas de red (por defecto 5).
+Combinado con los parámetros de período nocturno, el desperdicio de velocidad de red solo se ejecutará cuando las conexiones 'establecidas' del sistema estén por debajo de este umbral y sea de noche, para minimizar la interferencia con los servicios normales.
 
 -p especifica la prioridad del proceso, seguida de un valor de prioridad. Si no se especifica, se utilizará la prioridad más baja de la plataforma.
 Para sistemas similares a UNIX (como Linux, FreeBSD y macOS), el rango de valores es [-20, 19], y cuanto mayor sea el número, menor será la prioridad.

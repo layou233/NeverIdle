@@ -42,11 +42,20 @@ If the maximum waste of 20% of the CPU is `-cp 0.2`. The value range of percenta
 -m enables memory waste, followed by a number in GiB.  
 After startup, the specified amount of memory will be occupied and will not be released until the process is killed.
 
+-mp enables percentage-based dynamic memory waste.  
+E.g., `-mp 0.2` will automatically adjust the memory footprint to keep 20% memory usage and prevent system OOM. Do not use this together with `-m`.
+
 -n enables network(bandwidth) periodic waste, followed by the interval between wastes.  
 Argument format is the same as `-c`. The Ookla Speed Test will be performed periodically (and the results will be output!)
 
 -t specifics the number of concurrent connections of the network periodic waste.  
 The default is 10. The larger the value, the more resources will be consumed. For most situations, it does not need to be changed.
+
+-night-start and -night-end specify the night period (0-23 hours) for network speedtest waste.  
+E.g., `-night-start 22 -night-end 6` means testing is only allowed between 22:00 and 06:00 of the next day.
+
+-idle sets the network idle connection threshold (default 5).  
+Combined with the night period parameters, the network speedtest waste will only execute when the system's 'established' connections are below this threshold and it is during the night time, to minimize interference with normal services.
 
 -p specifics the process priority, followed by a priority value. If not specified, the lowest priority of the platform will be used by default.  
 For UNIX-like systems (such as Linux, FreeBSD, and macOS), the value range is [-20,19], and the higher the number, the lower the priority.  

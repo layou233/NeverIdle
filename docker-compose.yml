@@ -1,0 +1,10 @@
+services:
+  neveridle:
+    build: .
+    image: neveridle:latest
+    container_name: neveridle
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - TZ=Asia/Shanghai
+    command: ["-cp", "0.25", "-mp", "0.2", "-n", "4h", "-t", "10", "-night-start", "0", "-night-end", "6", "-idle", "5"]
