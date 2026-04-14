@@ -21,10 +21,12 @@ MJJ 们估计会喜欢这个。感谢脚本作者 @Ansen
 ## Usage
 
 从 Release 下载可执行文件。注意区分 amd64 和 arm64。
+仓库地址: [https://github.com/CodSnow/NeverIdle](https://github.com/CodSnow/NeverIdle)
 
 在服务器上启动一个 screen，然后执行本程序，用法自己搜。
 
 命令参数：
+
 
 ```shell
 ./NeverIdle -cp 0.15 -m 2 -n 4h
@@ -64,19 +66,37 @@ MJJ 们估计会喜欢这个。感谢脚本作者 @Ansen
 *启动该程序后即立刻执行一次你配置的所有功能，可以观察效果。*
 
 ## docker 部署
-1. 下载 `Dockerfile`
-```shell
-wget https://raw.githubusercontent.com/layou233/NeverIdle/master/Dockerfile
-```
-2. 构建镜像
-```shell
-# arm机器
-docker build -t neveridle:latest .
-# amd机器指定 ARCH=amd64
-docker build --build-arg ARCH=amd64 -t neveridle:latest .
-```
-3. 运行
+
+### 方式一: Docker Run
+
 ```bash
-# 命令参数同上
-docker run -d --name neveridle neveridle:latest -c 1h -m 2 -n 4h
+docker run -d \
+  --name neveridle \
+  --net=host \
+  -e TZ=Asia/Shanghai \
+  --restart unless-stopped \
+  ghcr.io/codsnow/neveridle:latest \
+  -cp 0.25 -mp 0.2 -n 4h -night-start 0 -night-end 6 -idle 5
+```
+
+### 方式二: Docker Compose (推荐)
+
+创建 `docker-compose.yml` 文件：
+
+```yaml
+services:
+  neveridle:
+    image: ghcr.io/codsnow/neveridle:latest
+    container_name: neveridle
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - TZ=Asia/Shanghai
+    command: ["-cp", "0.25", "-mp", "0.2", "-n", "4h", "-t", "10", "-night-start", "0", "-night-end", "6", "-idle", "5"]
+```
+
+然后运行：
+
+```bash
+docker-compose up -d
 ```
