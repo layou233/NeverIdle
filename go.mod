@@ -1,16 +1,16 @@
 module github.com/layou233/neveridle
 
-go 1.25.0
+go 1.26
 
 toolchain go1.26.3
 
 require (
 	github.com/shirou/gopsutil/v3 v3.24.5
 	github.com/shirou/gopsutil/v4 v4.26.4
-	github.com/showwin/speedtest-go v1.7.9
+	github.com/showwin/speedtest-go v1.8.3
 	go.einride.tech/pid v0.2.0
 	golang.org/x/crypto v0.52.0
-	golang.org/x/sys v0.45.0
+	golang.org/x/sys v0.47.0
 )
 
 require (
