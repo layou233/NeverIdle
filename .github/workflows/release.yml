@@ -1,0 +1,75 @@
+name: release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - goos: linux
+            goarch: amd64
+            ext: ''
+          - goos: linux
+            goarch: arm64
+            ext: ''
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache: true
+      - run: go mod download
+      - name: Build
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          CGO_ENABLED: '0'
+        run: >-
+          go build
+          -trimpath
+          -ldflags='-s -w -buildid='
+          -o NeverIdle-${{ matrix.goos }}-${{ matrix.goarch }}${{ matrix.ext }}
+          .
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v3
+        with:
+          files: NeverIdle-${{ matrix.goos }}-${{ matrix.goarch }}${{ matrix.ext }}
+          generate_release_notes: true
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [amd64, arm64]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: docker/setup-qemu-action@v4
+      - uses: docker/setup-buildx-action@v4
+      - uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v7
+        with:
+          context: .
+          push: true
+          platforms: linux/${{ matrix.arch }}
+          build-args: ARCH=${{ matrix.arch }}
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/neveridle:${{ github.ref_name }}-linux-${{ matrix.arch }}
+            ghcr.io/${{ github.repository_owner }}/neveridle:latest-linux-${{ matrix.arch }}
+          provenance: false

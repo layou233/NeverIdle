@@ -1,5 +1,7 @@
 # NeverIdle
 
+> **Aviso de fork:** Esta es una bifurcación mantenida por la comunidad de [layou233/NeverIdle](https://github.com/layou233/NeverIdle). Las correcciones de errores, actualizaciones de dependencias y mejoras de infraestructura aterrizan aquí.
+
 **Español** | [**English**](README_en.md) | [**简体中文**](README.md)
 
 *Te quiero, pero ¿podrías no detener mi máquina?*

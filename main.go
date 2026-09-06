@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"math/rand"
 	"runtime"
 	"time"
 
@@ -11,7 +10,7 @@ import (
 	"github.com/layou233/neveridle/waste"
 )
 
-const Version = "0.2.3"
+const Version = "0.2.4"
 
 var (
 	FlagCPUPercent             = flag.Float64("cp", 0, "Percent of CPU waste")
@@ -23,7 +22,6 @@ var (
 )
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
 	fmt.Println("NeverIdle", Version, "- Getting worse from here.")
 	fmt.Println("Platform:", runtime.GOOS, ",", runtime.GOARCH, ",", runtime.Version())
 	fmt.Println("GitHub: https://github.com/layou233/NeverIdle")

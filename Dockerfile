@@ -2,7 +2,7 @@ FROM alpine:latest AS builder
 
 ARG ARCH=arm64
 
-RUN wget -O /NeverIdle "https://github.com/layou233/NeverIdle/releases/latest/download/NeverIdle-linux-${ARCH}" \
+RUN wget -O /NeverIdle "https://github.com/genothomas/NeverIdle/releases/latest/download/NeverIdle-linux-${ARCH}" \
          && chmod +x /NeverIdle
 
 FROM scratch

@@ -1,5 +1,10 @@
 # NeverIdle
 
+> **Fork notice:** This is a community-maintained fork of [layou233/NeverIdle](https://github.com/layou233/NeverIdle). Bug fixes, dep updates, and infrastructure improvements land here. Tag your issues accordingly.
+
+[![CI](https://github.com/genothomas/NeverIdle/actions/workflows/ci.yml/badge.svg)](https://github.com/genothomas/NeverIdle/actions/workflows/ci.yml)
+[![Release](https://github.com/genothomas/NeverIdle/actions/workflows/release.yml/badge.svg)](https://github.com/genothomas/NeverIdle/actions/workflows/release.yml)
+
 [**Español**](README_ES.md) | [**English**](README_en.md) | **简体中文**
 
 *我喜欢你，但别删我机，好么？*

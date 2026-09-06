@@ -12,29 +12,31 @@ import (
 
 func Network(interval time.Duration, connectionCount int) {
 	cache := false
-	speedtest.GlobalDataManager.SetNThread(connectionCount)
+	client := speedtest.New()
+	client.SetNThread(connectionCount)
 	var targets speedtest.Servers
 	for {
 		if !cache {
-			_, err := speedtest.FetchUserInfo()
+			_, err := client.FetchUserInfo()
 			if err != nil {
 				fmt.Println("[NETWORK] Error when fetching user info:", err)
 				time.Sleep(time.Minute)
 				continue
 			}
-			serverList, err := speedtest.FetchServers()
+			serverList, err := client.FetchServers()
 			if err != nil {
 				fmt.Println("[NETWORK] Error when fetching servers:", err)
 				time.Sleep(time.Minute)
 				continue
 			}
 
-			targets = *serverList.Available()
-			if len(targets) == 0 {
+			avail := serverList.Available()
+			if avail == nil || len(*avail) == 0 {
 				fmt.Println("[NETWORK] No available server to test. Retry in 5 seconds...")
 				time.Sleep(5 * time.Second)
 				continue
 			}
+			targets = *avail
 			if float64(len(targets))/float64(len(serverList)) > 0.5 {
 				cache = true
 			}
@@ -43,7 +45,7 @@ func Network(interval time.Duration, connectionCount int) {
 		// pick random as main server
 		s := targets[rand.Int31n(int32(len(targets)))]
 
-		err := s.PingTest(nil)
+		err := s.PingTestContext(context.Background(), nil)
 		if err != nil {
 			s.Latency = -1
 		}
@@ -60,7 +62,7 @@ func Network(interval time.Duration, connectionCount int) {
 
 		fmt.Println("[NETWORK] SpeedTest Ping:", s.Latency, ", Download:", s.DLSpeed, ", Upload:", s.ULSpeed, "mainServer", s.String())
 
-		speedtest.GlobalDataManager.Reset()
+		client.Reset()
 		runtime.GC()
 		time.Sleep(interval)
 	}
