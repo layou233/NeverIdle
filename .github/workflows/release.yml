@@ -1,27 +1,22 @@
 name: release
-
 on:
   push:
     tags:
       - 'v*'
       - '[0-9]*'
-
 permissions:
   contents: write
-
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
-
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7 [pinned by action-pin]
       - name: Setup Go
-        uses: actions/setup-go@v7
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7 [pinned by action-pin]
         with:
           go-version-file: go.mod
           cache: true
-
       - name: Build binaries
         env:
           CGO_ENABLED: '0'
@@ -32,9 +27,8 @@ jobs:
           GOOS=linux GOARCH=arm64 go build -trimpath -ldflags="-s -w -buildid=" -o NeverIdle-linux-arm64 main.go
           # Windows amd64
           GOOS=windows GOARCH=amd64 go build -trimpath -ldflags="-s -w -buildid=" -o NeverIdle-windows-amd64.exe main.go
-
       - name: Create Release and Upload Assets
-        uses: softprops/action-gh-release@v3
+        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3 [pinned by action-pin]
         with:
           files: |
             NeverIdle-linux-amd64
